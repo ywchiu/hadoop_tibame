@@ -1,4 +1,4 @@
-hadoop_tibame
+TiBaMe Hadoop Series 操作範例
 =============
 
-Hadoop Series For TiBaMe
+TiBaMe Hadoop Series 操作範例

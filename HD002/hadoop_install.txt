@@ -1,0 +1,38 @@
+下載Hadoop
+http://apache.stu.edu.tw/hadoop/common/hadoop-2.5.2/hadoop-2.5.2.tar.gz
+
+解壓縮Hadoop
+tar -zxvf hadoop-2.5.2.tar.gz
+
+新增使用者群組 hadoop
+$ sudo groupadd hadoop
+
+新增使用者 hadoop
+$ sudo useradd -g hadoop hadoop
+
+嘗試登入localhost
+ssh localhost
+
+如需要密碼，設定
+$ ssh-keygen -t dsa -P '' -f ~/.ssh/id_dsa 
+$ cat ~/.ssh/id_dsa.pub >> ~/.ssh/authorized_keys
+
+
+
+$HADOOP_HOME/etc/hadoop/core-site.xml
+
+<configuration>  
+   <property>  
+     <name>fs.defaultFS</name>  
+     <value>hdfs://localhost:9000</value>  
+   </property>  
+ </configuration> 
+ 
+ $HADOOP_HOME/etc/hadoop/hdfs-site.xml
+ 
+ <configuration>  
+   <property>  
+     <name>dfs.replication</name>  
+     <value>1</value>  
+   </property>  
+ </configuration>  
