@@ -18,6 +18,7 @@ $ ssh-keygen -t dsa -P '' -f ~/.ssh/id_dsa
 $ cat ~/.ssh/id_dsa.pub >> ~/.ssh/authorized_keys
 
 將設定加入~/.bashrc
+
 export JAVA_HOME=/usr/lib/jvm/jre-1.7.0-openjdk.x86_64
 export HADOOP_PREFIX=/usr/local/hadoop 
 export HADOOP_COMMON_HOME=$HADOOP_PREFIX 
@@ -31,19 +32,27 @@ export PATH=$PATH:$HADOOP_PREFIX/bin:$HADOOP_PREFIX/sbin
 
 
 $HADOOP_HOME/etc/hadoop/core-site.xml
+<property>
+    <name>fs.defaultFS</name>
+    <value>hdfs://localhost</value>
+</property>
+ 
+$HADOOP_HOME/etc/hadoop/hdfs-site.xml
+<property>
+   <name>dfs.replication</name>
+   <value>1</value>
+</property>
 
-<configuration>  
-   <property>  
-     <name>fs.defaultFS</name>  
-     <value>hdfs://localhost:9000</value>  
-   </property>  
- </configuration> 
- 
- $HADOOP_HOME/etc/hadoop/hdfs-site.xml
- 
- <configuration>  
-   <property>  
-     <name>dfs.replication</name>  
-     <value>1</value>  
-   </property>  
- </configuration>  
+$HADOOP_HOME/etc/hadoop/yarn-site.xml
+<property>
+   <name>yarn.nodemanager.aux-services</name>
+   <value>mapreduce_shuffle</value>
+</property>
+
+$HADOOP_HOME/etc/hadoop/mapred-site.xml
+<property>
+   <name>mapreduce.framework.name</name>
+   <value>yarn</value>
+</property>
+
+
