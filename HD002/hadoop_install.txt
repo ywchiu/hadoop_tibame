@@ -1,9 +1,14 @@
 移除舊的Java
 yum -y remove java-*
 
+下載及安裝Java
+http://www.oracle.com/technetwork/java/javase/downloads/index.html
+rpm -ivh jdk-8u25-linux-x64.rpm
+
 設定Java ~/.bashrc
 export JAVA_HOME=/usr/java/jdk1.8.0_25/
 export PATH=$PATH:$JAVA_HOME
+
 
 下載Hadoop
 http://apache.stu.edu.tw/hadoop/common/hadoop-2.5.2/hadoop-2.5.2.tar.gz
@@ -11,14 +16,29 @@ http://apache.stu.edu.tw/hadoop/common/hadoop-2.5.2/hadoop-2.5.2.tar.gz
 解壓縮Hadoop
 tar -zxvf hadoop-2.5.2.tar.gz
 
+切換成 root 使用者
+$ su –
+
+使用visudo 編輯權限
+$ visudo 
+
+給予sudo 權限 (於99行處)
+tibame	ALL=(ALL)	ALL
+
 新增使用者群組 hadoop
 $ sudo groupadd hadoop
 
 新增使用者 hadoop
 $ sudo useradd -g hadoop hadoop
 
-嘗試登入localhost
-ssh localhost
+將Hadoop 2.5.2 搬移到 /usr/local
+sudo mv ~/hadoop-2.5.2 /usr/local/hadoop
+
+更改該目錄權限
+ sudo chown –R hadoop:hadoop /usr/local/hadoop
+
+
+ 
 
 如需要密碼，設定
 $ ssh-keygen -t dsa -P '' -f ~/.ssh/id_dsa 
