@@ -58,9 +58,16 @@ $HADOOP_HOME/etc/hadoop/mapred-site.xml
 嘗試是否可以無密碼登入
 ssh localhost
 
+修改/etc/ssh/sshd_config
+將PasswordAuthentication?變更為no
+service sshd restart
+
 設置無密碼登入
 ssh-keygen -t dsa -P '' -f ~/.ssh/id_dsa
 cat ~/.ssh/id_dsa.pub >> ~/.ssh/authorized_keys
+chmod 700 ~/.ssh
+Chmod 600  ~/.ssh/authorized_keys
+
 
 修改 hadoop-env.sh
 更新JAVA_HOME
