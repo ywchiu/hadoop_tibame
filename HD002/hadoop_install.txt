@@ -55,4 +55,27 @@ $HADOOP_HOME/etc/hadoop/mapred-site.xml
    <value>yarn</value>
 </property>
 
+嘗試是否可以無密碼登入
+ssh localhost
+
+設置無密碼登入
+ssh-keygen -t dsa -P '' -f ~/.ssh/id_dsa
+cat ~/.ssh/id_dsa.pub >> ~/.ssh/authorized_keys
+
+修改 hadoop-env.sh
+更新JAVA_HOME
+vi /usr/local/hadoop/etc/hadoop/hadoop-env.sh
+JAVA_HOME=/usr/lib/jvm/jre-1.7.0-openjdk.x86_64
+
+格式化HDFS
+hdfs namenode –format
+
+啟用Hadoop
+單獨啟用HDFS及YARN
+start-dfs.sh
+start-yarn.sh
+
+或使用
+start-all.sh
+
 
